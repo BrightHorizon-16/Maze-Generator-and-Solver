@@ -1,9 +1,13 @@
 public class QueueArrayBased implements QueueInterface {
-  private static final int MAX_QUEUE = 50;
+  private final int MAX_QUEUE;
   private Object[] items;
   private int front, back, count;
 
-  public QueueArrayBased() {
+  public QueueArrayBased(int capacity) {
+    if (capacity < 1){
+      throw new IllegalArgumentException("Queue Capacity has to be ateast 1");
+    }
+    MAX_QUEUE = capacity;
     items = new Object[MAX_QUEUE];
     front = 0;
     back = MAX_QUEUE - 1;
@@ -52,7 +56,7 @@ public class QueueArrayBased implements QueueInterface {
     return items[front];
   }
 
-  /** Prints the queue horizontally from the front job to the back job. */
+
   public void displayQueue() {
     if (isEmpty()) {
       System.out.println("[FRONT/BACK] -> (empty)");
